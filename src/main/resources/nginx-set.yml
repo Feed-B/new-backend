@@ -1,0 +1,56 @@
+exi#nginx 포트 설정
+--- #서로 다른 프로파일에 대한 설정을 정의할 수 있게 해준다.
+spring:
+  config:
+    activate:
+      on-profile: set1
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://feedb-db.cjos0aaae8c0.ap-northeast-2.rds.amazonaws.com:3306/feedb_db?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: feedB_user
+    password: feedb_codeit
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+  security:
+    oauth2:
+      client:
+        registration:
+          naver:
+            redirect-uri: https://feedb.shop/login/oauth2/code/naver
+          kakao:
+            redirect-uri: https://feedb.shop/login/oauth2/code/kakao
+server:
+  port: 8081
+
+---
+spring:
+  config:
+    activate:
+      on-profile: set2
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://feedb-db.cjos0aaae8c0.ap-northeast-2.rds.amazonaws.com:3306/feedb_db?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: feedB_user
+    password: feedb_codeit
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+  security:
+    oauth2:
+      client:
+        registration:
+          naver:
+            redirect-uri: https://feedb.shop/login/oauth2/code/naver
+          kakao:
+            redirect-uri: https://feedb.shop/login/oauth2/code/kakao
+server:
+  port: 8082

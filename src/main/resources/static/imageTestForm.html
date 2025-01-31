@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Project</title>
+</head>
+<body>
+<form id="projectForm" action="/s3/upload" method="post" enctype="multipart/form-data">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="introduction">Introduction:</label>
+    <input type="text" id="introduction" name="introduction" required><br><br>
+
+    <label for="content">Content:</label>
+    <input type="text" id="content" name="content"><br><br>
+
+    <label for="serviceUrl">Service URL:</label>
+    <input type="url" id="serviceUrl" name="serviceUrl" required><br><br>
+
+    <label for="projectTechStacks">Project Tech Stacks (comma separated):</label>
+    <input type="text" id="projectTechStacks" name="projectTechStacks" required><br><br>
+
+    <label for="projectTeammates">Project Teammates (name,job):</label>
+    <input type="text" id="projectTeammates" name="projectTeammates" required><br><br>
+
+    <label for="projectLinks">Project Links (siteType,url):</label>
+    <input type="text" id="projectLinks" name="projectLinks" required><br><br>
+
+    <label for="images">Images:</label>
+    <input type="file" id="images" name="images" multiple><br><br>
+
+    <label for="indexes">Indexes (comma separated):</label>
+    <input type="text" id="indexes" name="indexes" required><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    document.getElementById('projectForm').onsubmit = function (e) {
+        e.preventDefault();
+
+        const form = new FormData(document.getElementById('projectForm'));
+
+        // Split projectTechStacks, projectTeammates, projectLinks, and indexes into arrays
+        const projectTechStacks = form.get('projectTechStacks').split(',');
+        form.delete('projectTechStacks');
+        projectTechStacks.forEach((stack, index) => form.append('projectTechStacks', stack));
+
+        const projectTeammates = form.get('projectTeammates').split(';').map(item => {
+            const [name, job] = item.split(',');
+            return {name, job};
+        });
+        form.delete('projectTeammates');
+        projectTeammates.forEach(teammate => form.append('projectTeammates', JSON.stringify(teammate)));
+
+        const projectLinks = form.get('projectLinks').split(';').map(item => {
+            const [siteType, url] = item.split(',');
+            return {siteType, url};
+        });
+        form.delete('projectLinks');
+        projectLinks.forEach(link => form.append('projectLinks', JSON.stringify(link)));
+
+        const indexes = form.get('indexes').split(',');
+        form.delete('indexes');
+        indexes.forEach((index, i) => form.append(`projectImages[${i}].index`, index));
+
+        // Log raw form data
+        for (let pair of form.entries()) {
+            console.log(pair[0] + ', ' + pair[1]);
+        }
+
+        fetch('/s3/upload', {
+            method: 'POST',
+            body: form
+        }).then(response => {
+            if (response.ok) {
+                alert('Project uploaded successfully');
+            } else {
+                alert('Failed to upload project');
+            }
+        }).catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>
