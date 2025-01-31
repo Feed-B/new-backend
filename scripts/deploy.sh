@@ -11,7 +11,7 @@ DEPLOY_PATH=$BASE_PATH/jar/
 cp $BUILD_PATH $DEPLOY_PATH
 
 echo "> 현재 구동중인 Set 확인" >> /home/ec2-user/deploy.log
-CURRENT_PROFILE=$(curl -s https://feedb.shop/nginx/profile)
+CURRENT_PROFILE=$(curl -s https://feedb.store/nginx/profile)
 echo "> $CURRENT_PROFILE" >> /home/ec2-user/deploy.log
 
 # 쉬고 있는 set 찾기: set1이 사용중이면 set2가 쉬고 있고 , 반대면 set1이 쉬고 있음

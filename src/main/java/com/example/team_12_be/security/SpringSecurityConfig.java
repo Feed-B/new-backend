@@ -70,7 +70,7 @@ public class SpringSecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         // TODO : 도메인 설정 완료 시 변경 할 것
         configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://feedb.vercel.app" , "https://feedb.shop"));
+        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://feedb.vercel.app" , "https://feedb.store"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setExposedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

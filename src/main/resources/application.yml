@@ -21,14 +21,14 @@ spring:
       client:
         registration:
           naver:
-            client-id: moMQFUSHmEQLJ24OlDhj
-            client-secret: HupMrYC8yt #TODO 외부 노출 방지 필요
+            client-id: PRkVouR_ApYaBb4gie9c
+            client-secret: BgKCW4JtK3 #TODO 외부 노출 방지 필요
             redirect-uri: http://localhost:8080/login/oauth2/code/naver #고정값(운영일 때 profile에 맞춰 변경)
             authorization-grant-type: authorization_code
             scope: name , email
             client-name: Naver
           kakao:
-            client-id: 1e8cf90e4a41d3250b08438a95b69f98
+            client-id: bd9657b9f9347732e4f6bf1eb2e62c4d
             redirect-uri: http://localhost:8080/login/oauth2/code/kakao #고정값(운영일 때 profile에 맞춰 변경)
             authorization-grant-type: authorization_code
             scope: profile_nickname , account_email #profile_nickname
