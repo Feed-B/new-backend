@@ -7,8 +7,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://feedb-db.cjos0aaae8c0.ap-northeast-2.rds.amazonaws.com:3306/feedb_db?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
-    username: feedB_user
-    password: feedb_codeit
+    username: admin
+    password: GUP4jLy1bBKzdwOSENVU
   jpa:
     hibernate:
       ddl-auto: update
@@ -35,8 +35,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://feedb-db.cjos0aaae8c0.ap-northeast-2.rds.amazonaws.com:3306/feedb_db?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
-    username: feedB_user
-    password: feedb_codeit
+    username: admin
+    password: GUP4jLy1bBKzdwOSENVU
   jpa:
     hibernate:
       ddl-auto: update
