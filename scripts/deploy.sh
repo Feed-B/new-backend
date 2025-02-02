@@ -4,7 +4,7 @@ echo "> ============ deploy.sh 실행 ($(date)) =============" >> /home/ec2-user
 BASE_PATH=/home/ec2-user/FeedB-project
 
 # 🔹 JAR 파일 찾기
-BUILD_PATH=$(ls -t $BASE_PATH/build/libs/*.jar | head -n 1)
+BUILD_PATH=$(ls -t $BASE_PATH/build/libs/*.jar | grep -v 'plain.jar' | head -n 1)
 JAR_NAME=$(basename $BUILD_PATH)
 
 echo "> 빌드된 JAR 파일명: $JAR_NAME" >> /home/ec2-user/deploy.log
